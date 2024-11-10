@@ -1,0 +1,6 @@
+@PE_SE173338_HostAddress = http://localhost:5210
+
+GET {{PE_SE173338_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

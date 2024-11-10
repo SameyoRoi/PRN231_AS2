@@ -1,0 +1,28 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Login page";
+}
+
+<h1>Login Page</h1>
+
+<div>
+    <form method="post">
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" asp-for="LoginRequestDTO.Email" class="form-control" id="email" placeholder="Enter email" />
+            <span asp-validation-for="LoginRequestDTO.Email" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" asp-for="LoginRequestDTO.Password" class="form-control" id="password" placeholder="Password">
+            <span asp-validation-for="LoginRequestDTO.Password" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+
+    @if (Model.Message != null)
+    {
+        <p>@Model.Message</p>
+    }
+</div>

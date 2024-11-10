@@ -1,0 +1,99 @@
+﻿@page
+@model PE_SE173338_PE.Pages.JeweryPage.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+@if(HttpContext.Session.GetString("Role") == "1" || HttpContext.Session.GetString("Role") == "2")
+{
+
+    @if (HttpContext.Session.GetString("Role") == "1")
+    {
+        <p>
+            <a asp-page="Create">Create New</a>
+        </p>
+    }
+
+
+    @if (Model.Message != null)
+    {
+        <div class="alert alert-info" role="alert">
+            @Model.Message
+        </div>
+    }
+
+    <form method="get">
+        <div class="form-group">
+            <label for="SearchName">Search</label>
+            <input type="text" asp-for="SearchName" class="form-control" id="SearchName" />
+        </div>
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.SilverJewelry[0].SilverJewelryName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SilverJewelry[0].SilverJewelryDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SilverJewelry[0].MetalWeight)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SilverJewelry[0].Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SilverJewelry[0].ProductionYear)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SilverJewelry[0].CreatedDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SilverJewelry[0].Category.CategoryName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.SilverJewelry) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.SilverJewelryName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SilverJewelryDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MetalWeight)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductionYear)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category.CategoryName)
+            </td>
+                    @if (HttpContext.Session.GetString("Role") == "1")
+                    {
+                        <td>
+                            <a asp-page="./Edit" asp-route-id="@item.SilverJewelryId">Edit</a> |
+                            <a asp-page="./Details" asp-route-id="@item.SilverJewelryId">Details</a> |
+                            <a asp-page="./Delete" asp-route-id="@item.SilverJewelryId">Delete</a>
+                        </td>
+                    }
+        </tr>
+}
+    </tbody>
+</table>
+}
